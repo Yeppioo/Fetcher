@@ -83,12 +83,11 @@ async function checkLink(link, config, progress, finishedLinks, linkTotal) {
     for (let j = i; j < pageCount; j++) {
         progress('', finishedLinks, linkTotal);
     }
-    // 如果所有页面都访问失败（无2xx/3xx），归为fail
+    // 如果所有页面都访问失败（无2xx/3xx），归为fail，否则notFound
     if (!hasSuccess) {
         return { type: 'fail', link, url: checkedUrl };
     } else {
-        // 有页面访问成功但没有反链
-        return { type: 'fail', link, url: checkedUrl };
+        return { type: 'notFound', link, url: checkedUrl };
     }
 }
 
@@ -118,8 +117,8 @@ async function checkLink(link, config, progress, finishedLinks, linkTotal) {
         const result = {
             success: [], // 正确反链
             old: [],     // 旧版反链
-            fail: [],    // 未反链或全部访问失败
-            error: []    // 访问失败（保留字段，暂未用）
+            fail: [],    // 全部访问失败
+            notFound: [] // 有页面访问成功但没有反链
         };
 
         // 统计总拼接页面数
