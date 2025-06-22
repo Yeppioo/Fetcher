@@ -10,7 +10,7 @@ on:
     branches:
       - main
     paths-ignore:
-      - 'api/static/*'
+      - 'api/static/data/*'
 
 jobs:
   update-data:

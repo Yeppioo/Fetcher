@@ -148,7 +148,8 @@ function main() {
                 success: [], // 正确反链
                 old: [],     // 旧版反链
                 fail: [],    // 全部访问失败，含错误码
-                notFound: [] // 有页面访问成功但没有反链
+                notFound: [], // 有页面访问成功但没有反链
+                updateTime: '' // 更新时间
             };
 
             // 统计总拼接页面数
@@ -188,6 +189,8 @@ function main() {
             }
             await Promise.all(workers);
             process.stdout.write('\n');
+            // 检测完成后设置更新时间
+            result.updateTime = new Date().toISOString();
             // console.log('检测完成，结果如下：');
             if (config.friendChecker.export && config.friendChecker.exportPath) {
                 fs.writeFileSync(config.friendChecker.exportPath, JSON.stringify(result, null, 2), 'utf-8');

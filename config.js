@@ -2,7 +2,7 @@ const config = {
     friendChecker: {
         ignore: ['hexo.io'],
         export: true,
-        exportPath: './api/static/friend.json',
+        exportPath: './api/static/data/friend.json',
         linkPage: 'https://blog.yeppioo.vip/page/link',
         backLink: ['yeppioo.vip'],
         oldLink: ['yep.vin', 'daiyu.fun'],
