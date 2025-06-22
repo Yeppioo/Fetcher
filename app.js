@@ -27,13 +27,10 @@ function checkBackLink(html, backLinks, oldLinks) {
 // 动态适配终端宽度的进度条输出
 function printProgress(current, total, url, finishedLinks, linkTotal) {
     const percent = total === 0 ? 0 : Math.floor((current / total) * 100);
-    // 进度条后缀信息
     const info = `${current}/${total}(${percent}%) [${finishedLinks}/${linkTotal}]`;
     const cyan = '\x1b[36m';
     const reset = '\x1b[0m';
-    // 计算进度条长度
     const terminalWidth = process.stdout.columns || 80;
-    // 预留url长度+空格
     const barMax = Math.max(10, terminalWidth - info.length - url.length - 5);
     const filledLength = Math.floor(barMax * percent / 100);
     let bar = '';
@@ -42,10 +39,15 @@ function printProgress(current, total, url, finishedLinks, linkTotal) {
     } else {
         bar = `\x1b[32m${'='.repeat(filledLength)}>${' '.repeat(barMax - filledLength - 1)}\x1b[0m`;
     }
-    process.stdout.clearLine();
-    process.stdout.cursorTo(0);
-    process.stdout.write(`[${bar}] ${cyan}${url}${reset} ${info}`);
-    if (current === total) process.stdout.write('\n');
+    if (process.stdout.isTTY && typeof process.stdout.clearLine === 'function' && typeof process.stdout.cursorTo === 'function') {
+        process.stdout.clearLine();
+        process.stdout.cursorTo(0);
+        process.stdout.write(`[${bar}] ${cyan}${url}${reset} ${info}`);
+        if (current === total) process.stdout.write('\n');
+    } else {
+        // 非TTY环境，直接输出一行文本
+        console.log(`[${bar}] ${url} ${info}`);
+    }
 }
 
 // 并发处理友链检测，每拼接一个页面都实时刷新进度条
