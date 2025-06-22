@@ -1,4 +1,4 @@
-name: Update Friend Checker Data
+name: Update Data
 
 on:
   schedule:
@@ -35,8 +35,8 @@ jobs:
 
       - name: Commit and push
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git config --global user.name 'Yeppioo [Bot]'
+          git config --global user.email 'yeppioo@qq.com'
           git add api/static/
           git commit -m 'chore: update data' || echo 'No changes to commit'
           git push
