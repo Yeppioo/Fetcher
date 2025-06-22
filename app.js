@@ -24,50 +24,70 @@ function checkBackLink(html, backLinks, oldLinks) {
 }
 
 // pip风格进度条输出（单行，横线，使用clearLine+cursorTo）
-function printProgress(current, total, url) {
+function printProgress(current, total, url, finishedLinks, linkTotal) {
     const percent = total === 0 ? 0 : Math.floor((current / total) * 100);
     const barLength = 40;
     const filledLength = Math.floor(barLength * percent / 100);
-    const bar = `\x1b[32m${'='.repeat(filledLength)}${filledLength < barLength ? '>' : ''}${' '.repeat(barLength - filledLength - 1)}\x1b[0m`;
+    let bar = '';
+    if (filledLength >= barLength) {
+        bar = `\x1b[32m${'='.repeat(barLength)}\x1b[0m`;
+    } else {
+        bar = `\x1b[32m${'='.repeat(filledLength)}>${' '.repeat(barLength - filledLength - 1)}\x1b[0m`;
+    }
     const cyan = '\x1b[36m';
     const reset = '\x1b[0m';
     process.stdout.clearLine();
     process.stdout.cursorTo(0);
-    process.stdout.write(`[${bar}] ${current}/${total} (${percent}%)  ${cyan}${url}${reset}`);
+    process.stdout.write(`[${bar}] ${current}/${total} (${percent}%)  [${finishedLinks}/${linkTotal}]  ${cyan}${url}${reset}`);
     if (current === total) process.stdout.write('\n');
 }
 
 // 并发处理友链检测，每拼接一个页面都实时刷新进度条
-async function checkLink(link, config, progress) {
-    let checked = false;
-    let isOld = false;
-    let error = false;
+async function checkLink(link, config, progress, finishedLinks, linkTotal) {
     let checkedUrl = '';
-    for (const page of config.page) {
+    let hasSuccess = false; // 是否有页面访问成功
+    const pageCount = config.page.length;
+    let i = 0;
+    for (; i < pageCount; i++) {
+        let page = config.page[i];
         let pageUrl = link.url;
         if (!pageUrl.endsWith('/')) pageUrl += '/';
         pageUrl += page;
         checkedUrl = pageUrl;
-        progress(pageUrl);
+        progress(pageUrl, finishedLinks, linkTotal);
         try {
-            const res = await axios.get(pageUrl, { timeout: 10000 });
-            const pageHtml = res.data;
-            const { isBack, isOld: isOldLink } = checkBackLink(pageHtml, config.backLink, config.oldLink);
-            if (isBack) {
-                return { type: 'success', link: { ...link, page: pageUrl }, url: checkedUrl };
-            } else if (isOldLink) {
-                isOld = true;
+            const res = await axios.get(pageUrl, { timeout: 10000, validateStatus: null });
+            if (res.status >= 200 && res.status < 400) {
+                hasSuccess = true;
+                const pageHtml = res.data;
+                const { isBack, isOld: isOldLink } = checkBackLink(pageHtml, config.backLink, config.oldLink);
+                if (isBack) {
+                    // 检测到反链，补齐剩余进度
+                    for (let j = i + 1; j < pageCount; j++) {
+                        progress('', finishedLinks, linkTotal);
+                    }
+                    return { type: 'success', link: { ...link, page: pageUrl }, url: checkedUrl };
+                } else if (isOldLink) {
+                    for (let j = i + 1; j < pageCount; j++) {
+                        progress('', finishedLinks, linkTotal);
+                    }
+                    return { type: 'old', link, url: checkedUrl };
+                }
             }
         } catch (e) {
-            error = true;
+            // 网络错误等，继续尝试下一个页面
             continue;
         }
     }
-    if (isOld) {
-        return { type: 'old', link, url: checkedUrl };
-    } else if (error) {
-        return { type: 'error', link, url: checkedUrl };
+    // 补齐未提前return时的进度（正常遍历完）
+    for (let j = i; j < pageCount; j++) {
+        progress('', finishedLinks, linkTotal);
+    }
+    // 如果所有页面都访问失败（无2xx/3xx），归为fail
+    if (!hasSuccess) {
+        return { type: 'fail', link, url: checkedUrl };
     } else {
+        // 有页面访问成功但没有反链
         return { type: 'fail', link, url: checkedUrl };
     }
 }
@@ -98,8 +118,8 @@ async function checkLink(link, config, progress) {
         const result = {
             success: [], // 正确反链
             old: [],     // 旧版反链
-            fail: [],    // 未反链
-            error: []    // 访问失败
+            fail: [],    // 未反链或全部访问失败
+            error: []    // 访问失败（保留字段，暂未用）
         };
 
         // 统计总拼接页面数
@@ -109,27 +129,30 @@ async function checkLink(link, config, progress) {
         // 实时并发控制
         const concurrency = 20;
         let index = 0;
+        const linkTotal = links.length;
+        let finishedLinks = 0;
         // 任务队列
-        const queue = [];
         function next() {
             if (index >= links.length) return null;
             const link = links[index++];
-            return link;
+            return { link, linkIndex: index, linkTotal };
         }
         async function worker() {
             while (true) {
-                const link = next();
-                if (!link) break;
-                const r = await checkLink(link, config, (url) => {
+                const nextLink = next();
+                if (!nextLink) break;
+                const { link, linkIndex, linkTotal } = nextLink;
+                const r = await checkLink(link, config, (url, finished, totalLinks) => {
                     current++;
                     lastUrl = url;
-                    printProgress(current, total, lastUrl);
-                });
+                    printProgress(current, total, lastUrl, finishedLinks, linkTotal);
+                }, finishedLinks, linkTotal);
                 result[r.type].push(r.link);
+                finishedLinks++;
             }
         }
         // 启动并发worker
-        printProgress(0, total, ''); // 一开始就输出进度条
+        printProgress(0, total, '', 0, linkTotal); // 一开始就输出进度条
         const workers = [];
         for (let i = 0; i < concurrency; i++) {
             workers.push(worker());
