@@ -1,0 +1,15 @@
+{
+  "name": "yeppioo.friend-checker",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yeppioo",
+  "license": "GPL-3.0-or-later",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.10.0",
+    "cheerio": "^1.1.0"
+  }
+}
