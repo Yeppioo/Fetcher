@@ -1,6 +1,7 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const config = require('./config');
+const fs = require('fs');
 
 // 检查页面内容是否包含反链
 function checkBackLink(html, backLinks, oldLinks) {
@@ -26,13 +27,14 @@ function checkBackLink(html, backLinks, oldLinks) {
 // 动态适配终端宽度的进度条输出
 function printProgress(current, total, url, finishedLinks, linkTotal) {
     const percent = total === 0 ? 0 : Math.floor((current / total) * 100);
-    // 预留信息长度
-    const info = `${current}/${total} (${percent}%)  [${finishedLinks}/${linkTotal}]  ${url}`;
+    // 进度条后缀信息
+    const info = `${current}/${total}(${percent}%) [${finishedLinks}/${linkTotal}]`;
     const cyan = '\x1b[36m';
     const reset = '\x1b[0m';
     // 计算进度条长度
     const terminalWidth = process.stdout.columns || 80;
-    const barMax = Math.max(10, terminalWidth - info.length - 10); // 10为多余预留
+    // 预留url长度+空格
+    const barMax = Math.max(10, terminalWidth - info.length - url.length - 5);
     const filledLength = Math.floor(barMax * percent / 100);
     let bar = '';
     if (filledLength >= barMax) {
@@ -42,7 +44,7 @@ function printProgress(current, total, url, finishedLinks, linkTotal) {
     }
     process.stdout.clearLine();
     process.stdout.cursorTo(0);
-    process.stdout.write(`[${bar}] ${current}/${total} (${percent}%)  [${finishedLinks}/${linkTotal}]  ${cyan}${url}${reset}`);
+    process.stdout.write(`[${bar}] ${cyan}${url}${reset} ${info}`);
     if (current === total) process.stdout.write('\n');
 }
 
@@ -122,7 +124,17 @@ async function checkLink(link, config, progress, finishedLinks, linkTotal) {
                     const name = a.find('.flink-item-name').text().trim();
                     const url = a.attr('href');
                     const avatar = a.find('img').attr('src');
-                    links.push({ name, url, avatar });
+                    // 排除ignore中的域名
+                    let ignore = false;
+                    for (const ignoreDomain of config.ignore || []) {
+                        if (url && url.includes(ignoreDomain)) {
+                            ignore = true;
+                            break;
+                        }
+                    }
+                    if (!ignore) {
+                        links.push({ name, url, avatar });
+                    }
                 });
             }
         });
@@ -172,8 +184,13 @@ async function checkLink(link, config, progress, finishedLinks, linkTotal) {
         }
         await Promise.all(workers);
         process.stdout.write('\n');
-        console.log('检测完成，结果如下：');
-        console.log(JSON.stringify(result, null, 2));
+        // console.log('检测完成，结果如下：');
+        if (config.export && config.exportPath) {
+            fs.writeFileSync(config.exportPath, JSON.stringify(result, null, 2), 'utf-8');
+            console.log(`检测结果已导出到 ${config.exportPath}`);
+        } else {
+            console.log(JSON.stringify(result, null, 2));
+        }
     } catch (error) {
         console.error('获取或解析页面失败:', error);
     }
