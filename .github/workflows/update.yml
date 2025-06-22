@@ -9,8 +9,6 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - 'api/static/*'
 
 jobs:
   update-data:
@@ -33,14 +31,10 @@ jobs:
       - name: Run app.js
         run: node app.js
 
-      - name: Move result.json to /api/static/data.json
-        run: |
-          mv result.json api/static/data.json
-
-      - name: Commit and push data.json
+      - name: Commit and push
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add api/static/data.json
-          git commit -m 'chore: update data.json [auto]' || echo 'No changes to commit'
+          git add api/static/
+          git commit -m 'chore: update data' || echo 'No changes to commit'
           git push
