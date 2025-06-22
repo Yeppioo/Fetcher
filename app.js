@@ -48,6 +48,7 @@ async function checkLink(link, config, progress, finishedLinks, linkTotal) {
     let hasSuccess = false; // 是否有页面访问成功
     const pageCount = config.page.length;
     let i = 0;
+    const errorCodes = new Set();
     for (; i < pageCount; i++) {
         let page = config.page[i];
         let pageUrl = link.url;
@@ -73,9 +74,18 @@ async function checkLink(link, config, progress, finishedLinks, linkTotal) {
                     }
                     return { type: 'old', link, url: checkedUrl };
                 }
+            } else {
+                errorCodes.add(res.status);
             }
         } catch (e) {
             // 网络错误等，继续尝试下一个页面
+            if (e.response && e.response.status) {
+                errorCodes.add(e.response.status);
+            } else if (e.code) {
+                errorCodes.add(e.code);
+            } else {
+                errorCodes.add('UNKNOWN');
+            }
             continue;
         }
     }
@@ -85,7 +95,7 @@ async function checkLink(link, config, progress, finishedLinks, linkTotal) {
     }
     // 如果所有页面都访问失败（无2xx/3xx），归为fail，否则notFound
     if (!hasSuccess) {
-        return { type: 'fail', link, url: checkedUrl };
+        return { type: 'fail', link: { ...link, errorCodes: Array.from(errorCodes) }, url: checkedUrl };
     } else {
         return { type: 'notFound', link, url: checkedUrl };
     }
@@ -117,7 +127,7 @@ async function checkLink(link, config, progress, finishedLinks, linkTotal) {
         const result = {
             success: [], // 正确反链
             old: [],     // 旧版反链
-            fail: [],    // 全部访问失败
+            fail: [],    // 全部访问失败，含错误码
             notFound: [] // 有页面访问成功但没有反链
         };
 
