@@ -23,19 +23,23 @@ function checkBackLink(html, backLinks, oldLinks) {
     return { isBack, isOld };
 }
 
-// pip风格进度条输出（单行，横线，使用clearLine+cursorTo）
+// 动态适配终端宽度的进度条输出
 function printProgress(current, total, url, finishedLinks, linkTotal) {
     const percent = total === 0 ? 0 : Math.floor((current / total) * 100);
-    const barLength = 40;
-    const filledLength = Math.floor(barLength * percent / 100);
-    let bar = '';
-    if (filledLength >= barLength) {
-        bar = `\x1b[32m${'='.repeat(barLength)}\x1b[0m`;
-    } else {
-        bar = `\x1b[32m${'='.repeat(filledLength)}>${' '.repeat(barLength - filledLength - 1)}\x1b[0m`;
-    }
+    // 预留信息长度
+    const info = `${current}/${total} (${percent}%)  [${finishedLinks}/${linkTotal}]  ${url}`;
     const cyan = '\x1b[36m';
     const reset = '\x1b[0m';
+    // 计算进度条长度
+    const terminalWidth = process.stdout.columns || 80;
+    const barMax = Math.max(10, terminalWidth - info.length - 10); // 10为多余预留
+    const filledLength = Math.floor(barMax * percent / 100);
+    let bar = '';
+    if (filledLength >= barMax) {
+        bar = `\x1b[32m${'='.repeat(barMax)}\x1b[0m`;
+    } else {
+        bar = `\x1b[32m${'='.repeat(filledLength)}>${' '.repeat(barMax - filledLength - 1)}\x1b[0m`;
+    }
     process.stdout.clearLine();
     process.stdout.cursorTo(0);
     process.stdout.write(`[${bar}] ${current}/${total} (${percent}%)  [${finishedLinks}/${linkTotal}]  ${cyan}${url}${reset}`);
