@@ -25,7 +25,7 @@ function checkBackLink(html, backLinks, oldLinks) {
 
 // pip风格进度条输出（单行，横线，使用clearLine+cursorTo）
 function printProgress(current, total, url) {
-    const percent = Math.floor((current / total) * 100);
+    const percent = total === 0 ? 0 : Math.floor((current / total) * 100);
     const barLength = 40;
     const filledLength = Math.floor(barLength * percent / 100);
     const bar = `\x1b[32m${'='.repeat(filledLength)}${filledLength < barLength ? '>' : ''}${' '.repeat(barLength - filledLength - 1)}\x1b[0m`;
@@ -35,6 +35,41 @@ function printProgress(current, total, url) {
     process.stdout.cursorTo(0);
     process.stdout.write(`[${bar}] ${current}/${total} (${percent}%)  ${cyan}${url}${reset}`);
     if (current === total) process.stdout.write('\n');
+}
+
+// 并发处理友链检测，每拼接一个页面都实时刷新进度条
+async function checkLink(link, config, progress) {
+    let checked = false;
+    let isOld = false;
+    let error = false;
+    let checkedUrl = '';
+    for (const page of config.page) {
+        let pageUrl = link.url;
+        if (!pageUrl.endsWith('/')) pageUrl += '/';
+        pageUrl += page;
+        checkedUrl = pageUrl;
+        progress(pageUrl);
+        try {
+            const res = await axios.get(pageUrl, { timeout: 10000 });
+            const pageHtml = res.data;
+            const { isBack, isOld: isOldLink } = checkBackLink(pageHtml, config.backLink, config.oldLink);
+            if (isBack) {
+                return { type: 'success', link: { ...link, page: pageUrl }, url: checkedUrl };
+            } else if (isOldLink) {
+                isOld = true;
+            }
+        } catch (e) {
+            error = true;
+            continue;
+        }
+    }
+    if (isOld) {
+        return { type: 'old', link, url: checkedUrl };
+    } else if (error) {
+        return { type: 'error', link, url: checkedUrl };
+    } else {
+        return { type: 'fail', link, url: checkedUrl };
+    }
 }
 
 (async () => {
@@ -67,47 +102,39 @@ function printProgress(current, total, url) {
             error: []    // 访问失败
         };
 
-        // 检查每个友链
+        // 统计总拼接页面数
+        const total = links.length * config.page.length;
         let current = 0;
-        const total = links.length;
-        for (const link of links) {
-            let checked = false;
-            let isOld = false;
-            let error = false;
-            let currentUrl = '';
-            for (const page of config.page) {
-                let pageUrl = link.url;
-                if (!pageUrl.endsWith('/')) pageUrl += '/';
-                pageUrl += page;
-                currentUrl = pageUrl;
-                printProgress(current + 1, total, currentUrl);
-                try {
-                    const res = await axios.get(pageUrl, { timeout: 10000 });
-                    const pageHtml = res.data;
-                    const { isBack, isOld: isOldLink } = checkBackLink(pageHtml, config.backLink, config.oldLink);
-                    if (isBack) {
-                        result.success.push({ ...link, page: pageUrl });
-                        checked = true;
-                        break;
-                    } else if (isOldLink) {
-                        isOld = true;
-                    }
-                } catch (e) {
-                    error = true;
-                    continue;
-                }
-            }
-            if (!checked) {
-                if (isOld) {
-                    result.old.push(link);
-                } else if (error) {
-                    result.error.push(link);
-                } else {
-                    result.fail.push(link);
-                }
-            }
-            current++;
+        let lastUrl = '';
+        // 实时并发控制
+        const concurrency = 20;
+        let index = 0;
+        // 任务队列
+        const queue = [];
+        function next() {
+            if (index >= links.length) return null;
+            const link = links[index++];
+            return link;
         }
+        async function worker() {
+            while (true) {
+                const link = next();
+                if (!link) break;
+                const r = await checkLink(link, config, (url) => {
+                    current++;
+                    lastUrl = url;
+                    printProgress(current, total, lastUrl);
+                });
+                result[r.type].push(r.link);
+            }
+        }
+        // 启动并发worker
+        printProgress(0, total, ''); // 一开始就输出进度条
+        const workers = [];
+        for (let i = 0; i < concurrency; i++) {
+            workers.push(worker());
+        }
+        await Promise.all(workers);
         process.stdout.write('\n');
         console.log('检测完成，结果如下：');
         console.log(JSON.stringify(result, null, 2));
