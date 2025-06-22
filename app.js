@@ -23,6 +23,20 @@ function checkBackLink(html, backLinks, oldLinks) {
     return { isBack, isOld };
 }
 
+// pip风格进度条输出（单行，横线，使用clearLine+cursorTo）
+function printProgress(current, total, url) {
+    const percent = Math.floor((current / total) * 100);
+    const barLength = 40;
+    const filledLength = Math.floor(barLength * percent / 100);
+    const bar = `\x1b[32m${'='.repeat(filledLength)}${filledLength < barLength ? '>' : ''}${' '.repeat(barLength - filledLength - 1)}\x1b[0m`;
+    const cyan = '\x1b[36m';
+    const reset = '\x1b[0m';
+    process.stdout.clearLine();
+    process.stdout.cursorTo(0);
+    process.stdout.write(`[${bar}] ${current}/${total} (${percent}%)  ${cyan}${url}${reset}`);
+    if (current === total) process.stdout.write('\n');
+}
+
 (async () => {
     try {
         const response = await axios.get(config.linkPage);
@@ -54,14 +68,19 @@ function checkBackLink(html, backLinks, oldLinks) {
         };
 
         // 检查每个友链
+        let current = 0;
+        const total = links.length;
         for (const link of links) {
             let checked = false;
             let isOld = false;
             let error = false;
+            let currentUrl = '';
             for (const page of config.page) {
                 let pageUrl = link.url;
                 if (!pageUrl.endsWith('/')) pageUrl += '/';
                 pageUrl += page;
+                currentUrl = pageUrl;
+                printProgress(current + 1, total, currentUrl);
                 try {
                     const res = await axios.get(pageUrl, { timeout: 10000 });
                     const pageHtml = res.data;
@@ -87,7 +106,10 @@ function checkBackLink(html, backLinks, oldLinks) {
                     result.fail.push(link);
                 }
             }
+            current++;
         }
+        process.stdout.write('\n');
+        console.log('检测完成，结果如下：');
         console.log(JSON.stringify(result, null, 2));
     } catch (error) {
         console.error('获取或解析页面失败:', error);
