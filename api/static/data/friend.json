@@ -77,19 +77,9 @@
       "avatar": "https://p.weizwz.com/logo_a4353391cbf0889b.webp"
     },
     {
-      "name": "MYAN",
-      "url": "https://blog.myan.run/",
-      "avatar": "https://imgs.myan.run/i/2022/07/31/dvpwnk.webp"
-    },
-    {
       "name": "XK",
       "url": "https://blog.xukaiyyds.cn",
       "avatar": "https://blog.xukaiyyds.cn/img/favicon.png"
-    },
-    {
-      "name": "爱吃肉的猫",
-      "url": "https://meuicat.com/",
-      "avatar": "https://z1.ax1x.com/2023/05/26/p9qChjI.jpg"
     },
     {
       "name": "polar-bear～Blog",
@@ -97,9 +87,9 @@
       "avatar": "https://polar-bear.eu.org/img/hand.jpg"
     },
     {
-      "name": "Echo 的小窝",
-      "url": "https://www.liveout.cn/",
-      "avatar": "https://yy.liveout.cn/photo/photo2.jpg"
+      "name": "爱吃肉的猫",
+      "url": "https://meuicat.com/",
+      "avatar": "https://z1.ax1x.com/2023/05/26/p9qChjI.jpg"
     },
     {
       "name": "小城故事",
@@ -107,19 +97,14 @@
       "avatar": "https://npm.elemecdn.com/webxc/logo/logo.jpg"
     },
     {
+      "name": "Echo 的小窝",
+      "url": "https://www.liveout.cn/",
+      "avatar": "https://yy.liveout.cn/photo/photo2.jpg"
+    },
+    {
       "name": "墨尘",
       "url": "https://mnchen.cn/",
       "avatar": "https://image.mnchen.cn/2023/12/mnochen.jpg"
-    },
-    {
-      "name": "ZeroLatency",
-      "url": "https://blog.3ms.run",
-      "avatar": "https://blog.3ms.run/img/avatar-icon.jpg"
-    },
-    {
-      "name": "我的编程之路",
-      "url": "https://yys.zone/",
-      "avatar": "https://yys.zone/static/avatar.jpg"
     },
     {
       "name": "快乐小凳凳`Blog",
@@ -132,9 +117,19 @@
       "avatar": "https://img.pupper.cn/img/202307151348675.png"
     },
     {
+      "name": "ZeroLatency",
+      "url": "https://blog.3ms.run",
+      "avatar": "https://blog.3ms.run/img/avatar-icon.jpg"
+    },
+    {
       "name": "Pupper",
       "url": "https://pupper.cn",
       "avatar": "https://img.pupper.cn/img/202307151348675.png"
+    },
+    {
+      "name": "我的编程之路",
+      "url": "https://yys.zone/",
+      "avatar": "https://yys.zone/static/avatar.jpg"
     },
     {
       "name": "Vian",
@@ -145,11 +140,6 @@
       "name": "目的地-Destination",
       "url": "https://blog.chrison.cn",
       "avatar": "https://blog.chrison.cn/logo.webp"
-    },
-    {
-      "name": "Plasmon222",
-      "url": "https://blog.loveak.top/",
-      "avatar": "https://bu.dusays.com/2023/09/01/64f19e6f783a9.png"
     },
     {
       "name": "Mycpen",
@@ -164,11 +154,27 @@
   ],
   "fail": [
     {
+      "name": "Tianli",
+      "url": "https://tianli-blog.club/",
+      "avatar": "https://q2.qlogo.cn/headimg_dl?dst_uin=507249007&spec=640",
+      "errorCodes": [
+        "CERT_HAS_EXPIRED"
+      ]
+    },
+    {
       "name": "顾梦",
       "url": "https://blog.gumengyo.top",
       "avatar": "https://cloud.gumengyo.top/avatar.png",
       "errorCodes": [
         404
+      ]
+    },
+    {
+      "name": "青桔气球",
+      "url": "https://blog.qjqq.cn/",
+      "avatar": "https://avatar.qjqq.cn/1/6503bb1b7fa1a.webp!avatar",
+      "errorCodes": [
+        "ENOTFOUND"
       ]
     },
     {
@@ -181,27 +187,19 @@
       ]
     },
     {
-      "name": "Tianli",
-      "url": "https://tianli-blog.club/",
-      "avatar": "https://q2.qlogo.cn/headimg_dl?dst_uin=507249007&spec=640",
-      "errorCodes": [
-        "CERT_HAS_EXPIRED"
-      ]
-    },
-    {
-      "name": "青桔气球",
-      "url": "https://blog.qjqq.cn/",
-      "avatar": "https://avatar.qjqq.cn/1/6503bb1b7fa1a.webp!avatar",
-      "errorCodes": [
-        "ENOTFOUND"
-      ]
-    },
-    {
       "name": "Joker2Yue",
       "url": "https://blog.joker2yue.cn/",
       "avatar": "https://resource.joker2yue.cn/blog/images/avatar_joker.jpg",
       "errorCodes": [
         "ENOTFOUND"
+      ]
+    },
+    {
+      "name": "MYAN",
+      "url": "https://blog.myan.run/",
+      "avatar": "https://imgs.myan.run/i/2022/07/31/dvpwnk.webp",
+      "errorCodes": [
+        "ETIMEDOUT"
       ]
     },
     {
@@ -235,6 +233,16 @@
       "errorCodes": [
         "EPROTO"
       ]
+    },
+    {
+      "name": "Plasmon222",
+      "url": "https://blog.loveak.top/",
+      "avatar": "https://bu.dusays.com/2023/09/01/64f19e6f783a9.png",
+      "errorCodes": [
+        "ECONNABORTED",
+        404,
+        "ECONNRESET"
+      ]
     }
   ],
   "notFound": [
@@ -259,11 +267,6 @@
       "avatar": "https://cdn.dusays.com/avatar.png"
     },
     {
-      "name": "安知鱼`Blog",
-      "url": "https://blog.anheyu.com/",
-      "avatar": "https://img01.anheyu.com/useruploads/90/2023/04/23/6444e85234e51.jpg"
-    },
-    {
       "name": "Shiro 书架",
       "url": "https://snow.js.org/",
       "avatar": "https://snow.js.org/img/share.jpg"
@@ -282,7 +285,12 @@
       "name": "葱苓小筑",
       "url": "https://blog.ciraos.top",
       "avatar": "https://blog.ciraos.top/avatar.avif"
+    },
+    {
+      "name": "安知鱼`Blog",
+      "url": "https://blog.anheyu.com/",
+      "avatar": "https://img01.anheyu.com/useruploads/90/2023/04/23/6444e85234e51.jpg"
     }
   ],
-  "updateTime": "2025-06-25T04:55:28.915Z"
+  "updateTime": "2025-06-25T05:45:39.172Z"
 }
