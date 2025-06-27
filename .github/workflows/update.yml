@@ -20,7 +20,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.FRIEND_CHECKER_TOKEN }}
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -35,8 +35,8 @@ jobs:
 
       - name: Commit and push
         run: |
-          git config --global user.name 'Yeppioo [Bot]'
-          git config --global user.email 'yeppioo@qq.com'
           git add api/static/
           git commit -m 'chore: update data' || echo 'No changes to commit'
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
