@@ -2,7 +2,7 @@ name: Update Data
 
 on:
   schedule:
-    - cron: 0 */5 * * *'  # 每五小时的第 0 分钟运行（如 0:00, 5:00, 10:00 等）
+    - cron: '0 */5 * * *'  # 每五小时的第 0 分钟运行（如 0:00, 5:00, 10:00 等）
   workflow_dispatch:
   repository_dispatch:
     types: [external_update]
