@@ -70,7 +70,7 @@ async function checkLink(link, config, progress, finishedLinks, linkTotal) {
         checkedUrl = pageUrl;
         progress(pageUrl, finishedLinks, linkTotal);
         try {
-            const res = await axios.get(pageUrl, { timeout: 6000, validateStatus: null });
+            const res = await axios.get(pageUrl, { timeout: 12000, validateStatus: null });
             if (res.status >= 200 && res.status < 400) {
                 hasSuccess = true;
                 const pageHtml = res.data;
