@@ -8,21 +8,25 @@ const fs = require('fs');
 function checkBackLink(html, backLinks, oldLinks) {
     let isBack = false;
     let isOld = false;
+    let detectedOld = null;
+    // 检查新反链
     for (const back of backLinks) {
         if (html.includes(back)) {
             isBack = true;
             break;
         }
     }
+    // 检查旧反链
     if (!isBack) {
         for (const old of oldLinks) {
             if (html.includes(old)) {
                 isOld = true;
+                detectedOld = old;
                 break;
             }
         }
     }
-    return { isBack, isOld };
+    return { isBack, isOld, detectedOld };
 }
 
 // 动态适配终端宽度的进度条输出
@@ -70,7 +74,7 @@ async function checkLink(link, config, progress, finishedLinks, linkTotal) {
             if (res.status >= 200 && res.status < 400) {
                 hasSuccess = true;
                 const pageHtml = res.data;
-                const { isBack, isOld: isOldLink } = checkBackLink(pageHtml, config.friendChecker.backLink, config.friendChecker.oldLink);
+                const { isBack, isOld: isOldLink, detectedOld } = checkBackLink(pageHtml, config.friendChecker.backLink, config.friendChecker.oldLink);
                 if (isBack) {
                     // 检测到反链，补齐剩余进度
                     for (let j = i + 1; j < pageCount; j++) {
@@ -81,7 +85,8 @@ async function checkLink(link, config, progress, finishedLinks, linkTotal) {
                     for (let j = i + 1; j < pageCount; j++) {
                         progress('', finishedLinks, linkTotal);
                     }
-                    return { type: 'old', link, url: checkedUrl };
+                    // 返回检测到的旧域名
+                    return { type: 'old', link: { ...link, detectedOldDomain: detectedOld }, url: checkedUrl };
                 }
             } else {
                 errorCodes.add(res.status);
