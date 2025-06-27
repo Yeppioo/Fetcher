@@ -70,7 +70,7 @@ async function checkLink(link, config, progress, finishedLinks, linkTotal) {
         checkedUrl = pageUrl;
         progress(pageUrl, finishedLinks, linkTotal);
         try {
-            const res = await axios.get(pageUrl, { timeout: 10000, validateStatus: null });
+            const res = await axios.get(pageUrl, { timeout: 6000, validateStatus: null });
             if (res.status >= 200 && res.status < 400) {
                 hasSuccess = true;
                 const pageHtml = res.data;
@@ -162,41 +162,41 @@ function main() {
             let current = 0;
             let lastUrl = '';
             // 实时并发控制
-            const concurrency = 20;
+            const concurrency = 100;
             let index = 0;
             const linkTotal = links.length;
             let finishedLinks = 0;
-            // 任务队列
+
+            // 动态任务池实现
             function next() {
                 if (index >= links.length) return null;
                 const link = links[index++];
                 return { link, linkIndex: index, linkTotal };
             }
-            async function worker() {
-                while (true) {
-                    const nextLink = next();
-                    if (!nextLink) break;
-                    const { link, linkIndex, linkTotal } = nextLink;
-                    const r = await checkLink(link, config, (url, finished, totalLinks) => {
-                        current++;
-                        lastUrl = url;
-                        printProgress(current, total, lastUrl, finishedLinks, linkTotal);
-                    }, finishedLinks, linkTotal);
-                    result[r.type].push(r.link);
-                    finishedLinks++;
-                }
+            async function runOne() {
+                const nextLink = next();
+                if (!nextLink) return;
+                const { link, linkIndex, linkTotal } = nextLink;
+                const r = await checkLink(link, config, (url, finished, totalLinks) => {
+                    current++;
+                    lastUrl = url;
+                    printProgress(current, total, lastUrl, finishedLinks, linkTotal);
+                }, finishedLinks, linkTotal);
+                result[r.type].push(r.link);
+                finishedLinks++;
+                // 递归补充新任务
+                await runOne();
             }
-            // 启动并发worker
             printProgress(0, total, '', 0, linkTotal); // 一开始就输出进度条
-            const workers = [];
+            // 启动动态任务池
+            const pool = [];
             for (let i = 0; i < concurrency; i++) {
-                workers.push(worker());
+                pool.push(runOne());
             }
-            await Promise.all(workers);
+            await Promise.all(pool);
             process.stdout.write('\n');
             // 检测完成后设置更新时间
             result.updateTime = new Date().toISOString();
-            // console.log('检测完成，结果如下：');
             if (config.friendChecker.export && config.friendChecker.exportPath) {
                 fs.writeFileSync(config.friendChecker.exportPath, JSON.stringify(result, null, 2), 'utf-8');
                 console.log(`检测结果已导出到 ${config.friendChecker.exportPath}`);
