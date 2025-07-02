@@ -25,22 +25,10 @@
       "page": "https://wjldarling.top/social/link/"
     },
     {
-      "name": "ZeroLatency",
-      "url": "https://blog.3ms.run",
-      "avatar": "https://blog.3ms.run/img/avatar-icon.jpg",
-      "page": "https://blog.3ms.run/link"
-    },
-    {
       "name": "Ethereal",
       "url": "https://ethereal.ac.cn/",
       "avatar": "https://tuchuang.voooe.cn/images/2025/01/06/jojo.jpg",
       "page": "https://ethereal.ac.cn/link"
-    },
-    {
-      "name": "浩淋小峰HLXF",
-      "url": "https://blog.hlxf666nb.cloud",
-      "avatar": "https://blog.hlxf666nb.cloud/img/favicon.ico",
-      "page": "https://blog.hlxf666nb.cloud/link"
     },
     {
       "name": "我的编程之路",
@@ -55,10 +43,16 @@
       "page": "https://blog.xiowo.net/link"
     },
     {
-      "name": "堆新",
-      "url": "https://duinew.com/",
-      "avatar": "https://d.duinew.com/logo.webp",
-      "page": "https://duinew.com/links"
+      "name": "ZeroLatency",
+      "url": "https://blog.3ms.run",
+      "avatar": "https://blog.3ms.run/img/avatar-icon.jpg",
+      "page": "https://blog.3ms.run/link"
+    },
+    {
+      "name": "浩淋小峰HLXF",
+      "url": "https://blog.hlxf666nb.cloud",
+      "avatar": "https://blog.hlxf666nb.cloud/img/favicon.ico",
+      "page": "https://blog.hlxf666nb.cloud/link"
     },
     {
       "name": "Echo 的小窝",
@@ -67,16 +61,22 @@
       "page": "https://www.liveout.cn/friends"
     },
     {
-      "name": "lusyoe",
-      "url": "https://blog.lusyoe.com",
-      "avatar": "https://blog.lusyoe.com/avatar.svg",
-      "page": "https://blog.lusyoe.com/links.html"
-    },
-    {
       "name": "极客日记",
       "url": "https://www.explorexd.com",
       "avatar": "https://halo.cos.explorexd.com/halo/jack.jpeg",
       "page": "https://www.explorexd.com/links"
+    },
+    {
+      "name": "堆新",
+      "url": "https://duinew.com/",
+      "avatar": "https://d.duinew.com/logo.webp",
+      "page": "https://duinew.com/links"
+    },
+    {
+      "name": "lusyoe",
+      "url": "https://blog.lusyoe.com",
+      "avatar": "https://blog.lusyoe.com/avatar.svg",
+      "page": "https://blog.lusyoe.com/links.html"
     },
     {
       "name": "目的地-Destination",
@@ -135,15 +135,15 @@
       "detectedOldDomain": "yep.vin"
     },
     {
-      "name": "Haoyu",
-      "url": "https://g-haoyu.top/",
-      "avatar": "https://g-haoyu.top/img/avatar.png",
-      "detectedOldDomain": "yep.vin"
-    },
-    {
       "name": "vegecai",
       "url": "https://blog.vegecai.moe/",
       "avatar": "https://img.vegecai.moe/me.jpg",
+      "detectedOldDomain": "yep.vin"
+    },
+    {
+      "name": "Haoyu",
+      "url": "https://g-haoyu.top/",
+      "avatar": "https://g-haoyu.top/img/avatar.png",
       "detectedOldDomain": "yep.vin"
     },
     {
@@ -172,6 +172,24 @@
     }
   ],
   "fail": [
+    {
+      "name": "Akilarの糖果屋",
+      "url": "https://akilar.top/",
+      "avatar": "https://npm.elemecdn.com/akilar-friends@latest/avatar/akilar.top.jpg",
+      "errorCodes": [
+        404,
+        "ECONNABORTED"
+      ]
+    },
+    {
+      "name": "YJQ MinecraftYJQ",
+      "url": "https://docs.roundstudio.top/",
+      "avatar": "https://docs.roundstudio.top/img/favicon.ico",
+      "errorCodes": [
+        "ECONNABORTED",
+        404
+      ]
+    },
     {
       "name": "青桔气球",
       "url": "https://blog.qjqq.cn/",
@@ -207,25 +225,20 @@
   ],
   "notFound": [
     {
-      "name": "Akilarの糖果屋",
-      "url": "https://akilar.top/",
-      "avatar": "https://npm.elemecdn.com/akilar-friends@latest/avatar/akilar.top.jpg"
-    },
-    {
       "name": "杜老师说",
       "url": "https://dusays.com",
       "avatar": "https://cdn.dusays.com/avatar.png"
     },
     {
-      "name": "葱苓小筑",
-      "url": "https://blog.ciraos.top",
-      "avatar": "https://blog.ciraos.top/avatar.avif"
-    },
-    {
       "name": "安知鱼`Blog",
       "url": "https://blog.anheyu.com/",
       "avatar": "https://img01.anheyu.com/useruploads/90/2023/04/23/6444e85234e51.jpg"
+    },
+    {
+      "name": "葱苓小筑",
+      "url": "https://blog.ciraos.top",
+      "avatar": "https://blog.ciraos.top/avatar.avif"
     }
   ],
-  "updateTime": "2025-07-02T14:48:12.166Z"
+  "updateTime": "2025-07-02T15:05:36.232Z"
 }
