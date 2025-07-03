@@ -123,16 +123,20 @@ function main() {
             const $ = cheerio.load(html);
             // 解析分组和每组下的友链
             const links = [];
-            $('#article-container .flink > h2').each((i, el) => {
+            // 新的HTML结构解析
+            $('.flink > h2').each((i, el) => {
                 const groupName = $(el).text().replace(/\s+/g, '').replace(/\(.*\)/, '').trim();
                 if (groupName === '我的信息') return;
-                let flinkList = $(el).next('.flink-list');
+
+                // 新的友链列表结构：.anzhiyu-flink-list
+                let flinkList = $(el).next('.anzhiyu-flink-list');
                 if (flinkList.length) {
                     flinkList.find('.flink-list-item').each((j, item) => {
-                        const a = $(item).find('a');
+                        const a = $(item).find('a.cf-friends-link');
                         const name = a.find('.flink-item-name').text().trim();
-                        const url = a.attr('href');
-                        const avatar = a.find('img').attr('src');
+                        const url = a.attr('href') || a.attr('cf-href'); // 尝试获取 cf-href 属性
+                        const avatar = a.find('img').attr('src') || a.find('img').attr('cf-src'); // 尝试获取 cf-src 属性
+
                         // 排除ignore中的域名
                         let ignore = false;
                         for (const ignoreDomain of config.friendChecker.ignore || []) {
