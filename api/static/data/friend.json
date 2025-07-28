@@ -43,16 +43,16 @@
       "page": "https://ethereal.ac.cn/link"
     },
     {
-      "name": "我的编程之路",
-      "url": "https://yys.zone/",
-      "avatar": "https://yys.zone/static/avatar.jpg",
-      "page": "https://yys.zone/friend-links"
-    },
-    {
       "name": "浩淋小峰HLXF",
       "url": "https://blog.hlxf666nb.cloud",
       "avatar": "https://blog.hlxf666nb.cloud/img/favicon.ico",
       "page": "https://blog.hlxf666nb.cloud/link"
+    },
+    {
+      "name": "我的编程之路",
+      "url": "https://yys.zone/",
+      "avatar": "https://yys.zone/static/avatar.jpg",
+      "page": "https://yys.zone/friend-links"
     },
     {
       "name": "Mo的记事簿",
@@ -61,34 +61,28 @@
       "page": "https://blog.xiowo.net/link"
     },
     {
-      "name": "Haoyu",
-      "url": "https://g-haoyu.top/",
-      "avatar": "https://g-haoyu.top/img/avatar.png",
-      "page": "https://g-haoyu.top/links"
-    },
-    {
-      "name": "MYAN",
-      "url": "https://blog.myan.run/",
-      "avatar": "https://imgs.myan.run/i/2022/07/31/dvpwnk.webp",
-      "page": "https://blog.myan.run/link"
-    },
-    {
       "name": "Honesty",
       "url": "https://blog.hehouhui.cn",
       "avatar": "https://blog-file.hehouhui.cn/202507171929231.jpeg",
       "page": "https://blog.hehouhui.cn/pages/links"
     },
     {
-      "name": "lusyoe",
-      "url": "https://blog.lusyoe.com",
-      "avatar": "https://blog.lusyoe.com/avatar.svg",
-      "page": "https://blog.lusyoe.com/links.html"
+      "name": "Haoyu",
+      "url": "https://g-haoyu.top/",
+      "avatar": "https://g-haoyu.top/img/avatar.png",
+      "page": "https://g-haoyu.top/links"
     },
     {
-      "name": "Echo 的小窝",
-      "url": "https://www.liveout.cn/",
-      "avatar": "https://yy.liveout.cn/photo/photo2.jpg",
-      "page": "https://www.liveout.cn/friends"
+      "name": "iMaeGoo",
+      "url": "https://www.imaegoo.com",
+      "avatar": "https://www.imaegoo.com/images/avatar.jpg",
+      "page": "https://www.imaegoo.com/friends"
+    },
+    {
+      "name": "堆新",
+      "url": "https://duinew.com/",
+      "avatar": "https://d.duinew.com/logo.webp",
+      "page": "https://duinew.com/2bfriends"
     },
     {
       "name": "极客日记",
@@ -97,22 +91,22 @@
       "page": "https://www.explorexd.com/links"
     },
     {
+      "name": "Echo 的小窝",
+      "url": "https://www.liveout.cn/",
+      "avatar": "https://yy.liveout.cn/photo/photo2.jpg",
+      "page": "https://www.liveout.cn/friends"
+    },
+    {
+      "name": "lusyoe",
+      "url": "https://blog.lusyoe.com",
+      "avatar": "https://blog.lusyoe.com/avatar.svg",
+      "page": "https://blog.lusyoe.com/links.html"
+    },
+    {
       "name": "张洪Heo",
       "url": "https://blog.zhheo.com/",
       "avatar": "https://img.zhheo.com/i/2022/08/19/62ff32fa28da1.png",
       "page": "https://blog.zhheo.com/link"
-    },
-    {
-      "name": "堆新",
-      "url": "https://duinew.com/",
-      "avatar": "https://d.duinew.com/logo.webp",
-      "page": "https://duinew.com/pages/link"
-    },
-    {
-      "name": "iMaeGoo",
-      "url": "https://www.imaegoo.com",
-      "avatar": "https://www.imaegoo.com/images/avatar.jpg",
-      "page": "https://www.imaegoo.com/friends"
     },
     {
       "name": "目的地-Destination",
@@ -179,17 +173,18 @@
   ],
   "fail": [
     {
-      "name": "青桔气球",
-      "url": "https://blog.qjqq.cn/",
-      "avatar": "https://avatar.qjqq.cn/1/6503bb1b7fa1a.webp!avatar",
+      "name": "安知鱼`Blog",
+      "url": "https://blog.anheyu.com/",
+      "avatar": "https://img01.anheyu.com/useruploads/90/2023/04/23/6444e85234e51.jpg",
       "errorCodes": [
-        "ENOTFOUND"
+        404,
+        444
       ]
     },
     {
-      "name": "bbb-lsy07",
-      "url": "https://i.bbb-lsy07.sbs/",
-      "avatar": "https://i.bbb-lsy07.sbs/upload/quality_restoration_20250211145207618.JPG",
+      "name": "青桔气球",
+      "url": "https://blog.qjqq.cn/",
+      "avatar": "https://avatar.qjqq.cn/1/6503bb1b7fa1a.webp!avatar",
       "errorCodes": [
         "ENOTFOUND"
       ]
@@ -200,6 +195,14 @@
       "avatar": "https://docs.roundstudio.top/img/favicon.ico",
       "errorCodes": [
         403
+      ]
+    },
+    {
+      "name": "MYAN",
+      "url": "https://blog.myan.run/",
+      "avatar": "https://imgs.myan.run/i/2022/07/31/dvpwnk.webp",
+      "errorCodes": [
+        "ETIMEDOUT"
       ]
     },
     {
@@ -219,12 +222,12 @@
       ]
     },
     {
-      "name": "安知鱼`Blog",
-      "url": "https://blog.anheyu.com/",
-      "avatar": "https://img01.anheyu.com/useruploads/90/2023/04/23/6444e85234e51.jpg",
+      "name": "bbb-lsy07",
+      "url": "https://i.bbb-lsy07.sbs/",
+      "avatar": "https://i.bbb-lsy07.sbs/upload/quality_restoration_20250211145207618.JPG",
       "errorCodes": [
-        "ECONNRESET",
-        525
+        "ENOTFOUND",
+        "ECONNABORTED"
       ]
     }
   ],
@@ -245,5 +248,5 @@
       "avatar": "https://blog.ciraos.top/avatar.avif"
     }
   ],
-  "updateTime": "2025-07-28T05:24:05.073Z"
+  "updateTime": "2025-07-28T10:18:05.637Z"
 }
