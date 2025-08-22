@@ -13,12 +13,6 @@
       "page": "https://blog.chn.us.kg/link"
     },
     {
-      "name": "你好可爱",
-      "url": "https://wjldarling.top/",
-      "avatar": "https://wangjinglun.oss-cn-beijing.aliyuncs.com/images/1.jpg",
-      "page": "https://wjldarling.top/social/link/"
-    },
-    {
       "name": "冰火之砺",
       "url": "https://blog.marice.top/",
       "avatar": "https://pic.imgdb.cn/item/63957624b1fccdcd363145ca.png",
@@ -31,16 +25,22 @@
       "page": "https://blog.adyun.design/links"
     },
     {
-      "name": "墨尘",
-      "url": "https://mnchen.cn/",
-      "avatar": "https://image.mnchen.cn/2023/12/mnochen.jpg",
-      "page": "https://mnchen.cn/link"
+      "name": "你好可爱",
+      "url": "https://wjldarling.top/",
+      "avatar": "https://wangjinglun.oss-cn-beijing.aliyuncs.com/images/1.jpg",
+      "page": "https://wjldarling.top/social/link/"
     },
     {
       "name": "ZeroLatency",
       "url": "https://blog.3ms.run",
       "avatar": "https://blog.3ms.run/img/avatar-icon.jpg",
       "page": "https://blog.3ms.run/link"
+    },
+    {
+      "name": "墨尘",
+      "url": "https://mnchen.cn/",
+      "avatar": "https://image.mnchen.cn/2023/12/mnochen.jpg",
+      "page": "https://mnchen.cn/link"
     },
     {
       "name": "Ethereal",
@@ -73,12 +73,6 @@
       "page": "https://blog.starsharbor.com/links"
     },
     {
-      "name": "极客日记",
-      "url": "https://www.explorexd.com",
-      "avatar": "https://halo.cos.explorexd.com/halo/jack.jpeg",
-      "page": "https://www.explorexd.com/links"
-    },
-    {
       "name": "点点点",
       "url": "https://www.wccto.com/",
       "avatar": "https://www.wccto.com/upload/wccto.png",
@@ -91,22 +85,10 @@
       "page": "https://blog.xiowo.net/link"
     },
     {
-      "name": "lusyoe",
-      "url": "https://blog.lusyoe.com",
-      "avatar": "https://blog.lusyoe.com/avatar.svg",
-      "page": "https://blog.lusyoe.com/links.html"
-    },
-    {
-      "name": "Haoyu",
-      "url": "https://g-haoyu.top/",
-      "avatar": "https://g-haoyu.top/img/avatar.png",
-      "page": "https://g-haoyu.top/links"
-    },
-    {
-      "name": "fishcpy",
-      "url": "https://blog.fis.ink/",
-      "avatar": "https://www.fis.ink/img/logo.png",
-      "page": "https://blog.fis.ink/friends"
+      "name": "极客日记",
+      "url": "https://www.explorexd.com",
+      "avatar": "https://halo.cos.explorexd.com/halo/jack.jpeg",
+      "page": "https://www.explorexd.com/links"
     },
     {
       "name": "iMaeGoo",
@@ -115,16 +97,22 @@
       "page": "https://www.imaegoo.com/friends"
     },
     {
-      "name": "开源大数据驿站",
-      "url": "https://blog.kpretty.tech/",
-      "avatar": "https://oss.kpretty.tech/attachment/avatar.webp",
-      "page": "https://blog.kpretty.tech/link"
+      "name": "lusyoe",
+      "url": "https://blog.lusyoe.com",
+      "avatar": "https://blog.lusyoe.com/avatar.svg",
+      "page": "https://blog.lusyoe.com/links.html"
     },
     {
-      "name": "保哥笔记",
-      "url": "https://zhangwenbao.com/",
-      "avatar": "https://zhangwenbao.com/img/paul.jpg",
-      "page": "https://zhangwenbao.com/friends"
+      "name": "fishcpy",
+      "url": "https://blog.fis.ink/",
+      "avatar": "https://www.fis.ink/img/logo.png",
+      "page": "https://blog.fis.ink/friends"
+    },
+    {
+      "name": "Haoyu",
+      "url": "https://g-haoyu.top/",
+      "avatar": "https://g-haoyu.top/img/avatar.png",
+      "page": "https://g-haoyu.top/links"
     },
     {
       "name": "Echo 的小窝",
@@ -133,16 +121,28 @@
       "page": "https://www.liveout.cn/friends"
     },
     {
+      "name": "Honesty",
+      "url": "https://blog.hehouhui.cn",
+      "avatar": "https://blog-file.hehouhui.cn/202507171929231.jpeg",
+      "page": "https://blog.hehouhui.cn/pages/links"
+    },
+    {
+      "name": "开源大数据驿站",
+      "url": "https://blog.kpretty.tech/",
+      "avatar": "https://oss.kpretty.tech/attachment/avatar.webp",
+      "page": "https://blog.kpretty.tech/link"
+    },
+    {
       "name": "Eilo",
       "url": "https://www.eilo.uk/",
       "avatar": "https://www.eilo.uk/img/logo.png",
       "page": "https://www.eilo.uk/links"
     },
     {
-      "name": "Honesty",
-      "url": "https://blog.hehouhui.cn",
-      "avatar": "https://blog-file.hehouhui.cn/202507171929231.jpeg",
-      "page": "https://blog.hehouhui.cn/pages/links"
+      "name": "保哥笔记",
+      "url": "https://zhangwenbao.com/",
+      "avatar": "https://zhangwenbao.com/img/paul.jpg",
+      "page": "https://zhangwenbao.com/friends"
     },
     {
       "name": "八对星星",
@@ -171,15 +171,15 @@
       "detectedOldDomain": "daiyu.fun"
     },
     {
-      "name": "吮指原味姬",
-      "url": "https://www.yejinblok.cn/",
-      "avatar": "https://img01.anheyu.com/useruploads/243/2023/09/11/64fe7d926f8a0.jpg",
-      "detectedOldDomain": "daiyu.fun"
-    },
-    {
       "name": "神经蛙",
       "url": "https://hexo.sjava.cn/",
       "avatar": "https://hexo.sjava.cn/img/pic.png",
+      "detectedOldDomain": "daiyu.fun"
+    },
+    {
+      "name": "吮指原味姬",
+      "url": "https://www.yejinblok.cn/",
+      "avatar": "https://img01.anheyu.com/useruploads/243/2023/09/11/64fe7d926f8a0.jpg",
       "detectedOldDomain": "daiyu.fun"
     },
     {
@@ -195,16 +195,16 @@
       "detectedOldDomain": "yep.vin"
     },
     {
-      "name": "polar-bear～Blog",
-      "url": "https://polar-bear.eu.org/",
-      "avatar": "https://polar-bear.eu.org/img/hand.jpg",
-      "detectedOldDomain": "yep.vin"
-    },
-    {
       "name": "青桔气球",
       "url": "https://blog.qjqq.cn/",
       "avatar": "https://avatar.qjqq.cn/1/6503bb1b7fa1a.webp!avatar",
       "detectedOldDomain": "daiyu.fun"
+    },
+    {
+      "name": "polar-bear～Blog",
+      "url": "https://polar-bear.eu.org/",
+      "avatar": "https://polar-bear.eu.org/img/hand.jpg",
+      "detectedOldDomain": "yep.vin"
     },
     {
       "name": "vegecai",
@@ -213,27 +213,19 @@
       "detectedOldDomain": "yep.vin"
     },
     {
-      "name": "Plasmon222",
-      "url": "https://blog.loveak.top/",
-      "avatar": "https://bu.dusays.com/2023/09/01/64f19e6f783a9.png",
-      "detectedOldDomain": "yep.vin"
-    },
-    {
       "name": "Pupper",
       "url": "https://pupper.cn",
       "avatar": "https://img.pupper.cn/img/202307151348675.png",
       "detectedOldDomain": "yep.vin"
+    },
+    {
+      "name": "Plasmon222",
+      "url": "https://blog.loveak.top/",
+      "avatar": "https://bu.dusays.com/2023/09/01/64f19e6f783a9.png",
+      "detectedOldDomain": "yep.vin"
     }
   ],
   "fail": [
-    {
-      "name": "MYAN",
-      "url": "https://blog.myan.run/",
-      "avatar": "https://imgs.myan.run/i/2022/07/31/dvpwnk.webp",
-      "errorCodes": [
-        403
-      ]
-    },
     {
       "name": "YJQ MinecraftYJQ",
       "url": "https://docs.roundstudio.top/",
@@ -243,11 +235,29 @@
       ]
     },
     {
+      "name": "MYAN",
+      "url": "https://blog.myan.run/",
+      "avatar": "https://imgs.myan.run/i/2022/07/31/dvpwnk.webp",
+      "errorCodes": [
+        403
+      ]
+    },
+    {
       "name": "天渺studio",
       "url": "https://tianmiao.site",
       "avatar": "https://s21.ax1x.com/2024/12/22/pAXtJat.jpg",
       "errorCodes": [
+        "ECONNABORTED",
         404
+      ]
+    },
+    {
+      "name": "Akilarの糖果屋",
+      "url": "https://akilar.top/",
+      "avatar": "https://npm.elemecdn.com/akilar-friends@latest/avatar/akilar.top.jpg",
+      "errorCodes": [
+        404,
+        "ECONNABORTED"
       ]
     },
     {
@@ -255,6 +265,7 @@
       "url": "https://zhoutian.com",
       "avatar": "https://bu.dusays.com/2023/01/29/63d5bf7fa0d2c.png",
       "errorCodes": [
+        "ECONNABORTED",
         404
       ]
     },
@@ -263,6 +274,7 @@
       "url": "https://www.gfbzsblog.site/",
       "avatar": "https://www.gfbzsblog.site/images/avatar_20250520_215057.png",
       "errorCodes": [
+        "ECONNABORTED",
         404
       ]
     },
@@ -300,11 +312,6 @@
       "avatar": "https://cdn.dusays.com/avatar.png"
     },
     {
-      "name": "Akilarの糖果屋",
-      "url": "https://akilar.top/",
-      "avatar": "https://npm.elemecdn.com/akilar-friends@latest/avatar/akilar.top.jpg"
-    },
-    {
       "name": "安知鱼`Blog",
       "url": "https://blog.anheyu.com/",
       "avatar": "https://img01.anheyu.com/useruploads/90/2023/04/23/6444e85234e51.jpg"
@@ -325,5 +332,5 @@
       "avatar": "https://cn.cravatar.com/avatar/14e584196d31262ea144ab4d75d4c083?s=500&r=g"
     }
   ],
-  "updateTime": "2025-08-21T20:16:51.642Z"
+  "updateTime": "2025-08-22T01:06:43.212Z"
 }
