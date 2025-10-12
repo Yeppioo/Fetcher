@@ -49,12 +49,6 @@
       "page": "https://ethereal.ac.cn/link"
     },
     {
-      "name": "bbb-lsy07",
-      "url": "https://blog.6uu.us/",
-      "avatar": "https://images.6uu.us/20250511114301488.JPG",
-      "page": "https://blog.6uu.us/friends"
-    },
-    {
       "name": "我的编程之路",
       "url": "https://yys.zone/",
       "avatar": "https://yys.zone/static/avatar.jpg",
@@ -67,6 +61,12 @@
       "page": "https://blog.hlxf666nb.cloud/link"
     },
     {
+      "name": "bbb-lsy07",
+      "url": "https://blog.6uu.us/",
+      "avatar": "https://images.6uu.us/20250511114301488.JPG",
+      "page": "https://blog.6uu.us/links"
+    },
+    {
       "name": "柠檬星",
       "url": "https://blog.lemonstar.me",
       "avatar": "https://blog.lemonstar.me/img/site-icon-lemon.png",
@@ -77,18 +77,6 @@
       "url": "https://blog.xiowo.net/",
       "avatar": "https://bu.dusays.com/2023/07/22/64bb7a6a7ddf8.png",
       "page": "https://blog.xiowo.net/link"
-    },
-    {
-      "name": "Honesty",
-      "url": "https://blog.hehouhui.cn",
-      "avatar": "https://blog-file.hehouhui.cn/202507171929231.jpeg",
-      "page": "https://blog.hehouhui.cn/pages/links"
-    },
-    {
-      "name": "Haoyu",
-      "url": "https://g-haoyu.top/",
-      "avatar": "https://g-haoyu.top/img/avatar.png",
-      "page": "https://g-haoyu.top/links"
     },
     {
       "name": "vegecai",
@@ -107,6 +95,12 @@
       "url": "https://blog.fis.ink/",
       "avatar": "https://www.fis.ink/img/logo.png",
       "page": "https://blog.fis.ink/link"
+    },
+    {
+      "name": "Haoyu",
+      "url": "https://g-haoyu.top/",
+      "avatar": "https://g-haoyu.top/img/avatar.png",
+      "page": "https://g-haoyu.top/links"
     },
     {
       "name": "Lifeline",
@@ -133,16 +127,22 @@
       "page": "https://www.wccto.com/links"
     },
     {
+      "name": "Honesty",
+      "url": "https://blog.hehouhui.cn",
+      "avatar": "https://blog-file.hehouhui.cn/202507171929231.jpeg",
+      "page": "https://blog.hehouhui.cn/pages/links"
+    },
+    {
       "name": "开源大数据驿站",
       "url": "https://blog.kpretty.tech/",
       "avatar": "https://oss.kpretty.tech/attachment/avatar.webp",
       "page": "https://blog.kpretty.tech/link"
     },
     {
-      "name": "极客日记",
-      "url": "https://www.explorexd.com",
-      "avatar": "https://halo.cos.explorexd.com/halo/jack.jpeg",
-      "page": "https://www.explorexd.com/links"
+      "name": "Echo 的小窝",
+      "url": "https://www.liveout.cn/",
+      "avatar": "https://yy.liveout.cn/photo/photo2.jpg",
+      "page": "https://www.liveout.cn/friends"
     },
     {
       "name": "保哥笔记",
@@ -151,10 +151,10 @@
       "page": "https://zhangwenbao.com/friends"
     },
     {
-      "name": "Echo 的小窝",
-      "url": "https://www.liveout.cn/",
-      "avatar": "https://yy.liveout.cn/photo/photo2.jpg",
-      "page": "https://www.liveout.cn/friends"
+      "name": "极客日记",
+      "url": "https://www.explorexd.com",
+      "avatar": "https://halo.cos.explorexd.com/halo/jack.jpeg",
+      "page": "https://www.explorexd.com/links"
     },
     {
       "name": "张洪Heo",
@@ -201,15 +201,15 @@
       "detectedOldDomain": "yep.vin"
     },
     {
-      "name": "polar-bear～Blog",
-      "url": "https://polar-bear.eu.org/",
-      "avatar": "https://polar-bear.eu.org/img/hand.jpg",
-      "detectedOldDomain": "yep.vin"
-    },
-    {
       "name": "XK",
       "url": "https://blog.xukaiyyds.cn",
       "avatar": "https://blog.xukaiyyds.cn/img/favicon.png",
+      "detectedOldDomain": "yep.vin"
+    },
+    {
+      "name": "polar-bear～Blog",
+      "url": "https://polar-bear.eu.org/",
+      "avatar": "https://polar-bear.eu.org/img/hand.jpg",
       "detectedOldDomain": "yep.vin"
     },
     {
@@ -273,19 +273,19 @@
       ]
     },
     {
-      "name": "孤芳不自赏",
-      "url": "https://www.gfbzsblog.site/",
-      "avatar": "https://www.gfbzsblog.site/images/avatar_20250520_215057.png",
-      "errorCodes": [
-        404
-      ]
-    },
-    {
       "name": "MYAN",
       "url": "https://blog.myan.run/",
       "avatar": "https://imgs.myan.run/i/2022/07/31/dvpwnk.webp",
       "errorCodes": [
         "ETIMEDOUT"
+      ]
+    },
+    {
+      "name": "孤芳不自赏",
+      "url": "https://www.gfbzsblog.site/",
+      "avatar": "https://www.gfbzsblog.site/images/avatar_20250520_215057.png",
+      "errorCodes": [
+        404
       ]
     },
     {
@@ -327,5 +327,5 @@
       "avatar": "https://cn.cravatar.com/avatar/14e584196d31262ea144ab4d75d4c083?s=500&r=g"
     }
   ],
-  "updateTime": "2025-10-11T20:15:14.406Z"
+  "updateTime": "2025-10-12T01:07:16.216Z"
 }
